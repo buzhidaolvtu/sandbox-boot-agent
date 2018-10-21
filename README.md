@@ -1,19 +1,14 @@
 # sandbox-boot-agent
 ```text
-xxx.jar
-xxx/
-xxx.jar!xxx/
-xxx.jar!xxx.jar
-xxx.jar!/xxx.jar!/xxx/
+目标：怎样把下面的格式转换成agent可以使用的java.util.jar.JarFile格式
+path/path/xxx.jar!/path/path/yyy.jar!/  => JarFile
+分解为
+path/path/xxx.jar:outer jar archive
+/path/path/yyy.jar: nested jar archive : including .class file
 
-xxx.jar!/sandbox/lib/sandbox-agent.jar!/s  => JarFile
-xxx.jar!/sandbox/lib/sandbox-core.jar  => JarFile
+实现方式是把outer jar archive解压为目录
 
-
-CodeSource:        /Users/lvtu/workspace/util4j/target/classes
-
-JarFileArchive    jar:file:/Users/lvtu/workspace/util4j/target/boot.jar!/util4j-1.0-SNAPSHOT.jar!/
-ExplodedArchive   jar:file:/var/folders/zm/dbtvgy65019dw_f_6dtqt4mc0000gn/T/util4j-unzip7453092161092096601/util4j-1.0-SNAPSHOT.jar!/
+-----------------------------
 
 jar archive format:
 codeSourcePath:file:/Users/lvtu/workspace/sandbox-boot-agent/target/sandbox-boot-agent.jar!/sandbox/lib/sandbox-agent.jar!/,
