@@ -8,4 +8,22 @@
     <artifactId>sandbox-module-example</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.alibaba.jvm.sandbox</groupId>
+                <artifactId>sandbox-boot-maven-plugin</artifactId>
+                <version>1.0-SNAPSHOT-1.0.16</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
 </project>
