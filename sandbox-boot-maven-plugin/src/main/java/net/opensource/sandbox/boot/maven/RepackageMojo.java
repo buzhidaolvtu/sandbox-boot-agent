@@ -1,5 +1,6 @@
 package net.opensource.sandbox.boot.maven;
 
+import net.opensource.freedom.util.ZipUtils;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
@@ -78,30 +79,22 @@ public class RepackageMojo extends AbstractMojo {
 
     private void repackage() {
         try {
-            File sandbox_boot_agent = new File(target, "sandbox-boot-agent");
-            sandbox_boot_agent.delete();
-            sandbox_boot_agent.mkdir();
+            File sandbox_boot_agent_home = new File(target, "sandbox-boot-agent");
+            sandbox_boot_agent_home.delete();
+            sandbox_boot_agent_home.mkdir();
 
             //解压sandbox-1.0.16-bin.zip
             Enumeration<URL> sandboxResources = getClass().getClassLoader().getResources(SANBOX);
-            while (sandboxResources.hasMoreElements()) {
-                URL url = sandboxResources.nextElement();
-                System.out.println(url);
-                if (url.toString().contains("sandbox-1.0.16-bin.zip")) {
-                }
-            }
+            URL sandboxUrl = sandboxResources.nextElement();
+            ZipUtils.unzip(sandboxUrl.openStream(),sandbox_boot_agent_home);
 
             //解压sandbox-boot-loader-1.0-SNAPSHOT-jar-with-dependencies.jar
             Enumeration<URL> sandboxLoaderResources = getClass().getClassLoader().getResources(SANBOX_LOADER);
-            while (sandboxLoaderResources.hasMoreElements()) {
-                URL url = sandboxLoaderResources.nextElement();
-                System.out.println(url);
-                if (url.toString().contains("sandbox-boot-loader-1.0-SNAPSHOT-jar-with-dependencies.jar")) {
-                }
-            }
+            URL sandboxLoaderUrl = sandboxLoaderResources.nextElement();
+            ZipUtils.unzip(sandboxLoaderUrl.openStream(),sandbox_boot_agent_home);
 
             //把user-module.jar放到user-module目录下面，如果是pom，就把子包的jar全部放到user-module下面
-            File user_modules_dir = new File(sandbox_boot_agent, "user-modules");
+            File user_modules_dir = new File(sandbox_boot_agent_home, "user-modules");
             user_modules_dir.delete();
             user_modules_dir.mkdir();
 
