@@ -23,8 +23,8 @@ import java.util.Properties;
  */
 public class CoreConfigure {
 
-    private static final String KEY_NAMESPACE="namespace";
-    private static final String DEFAULT_VAL_NAMESPACE="default";
+    private static final String KEY_NAMESPACE = "namespace";
+    private static final String DEFAULT_VAL_NAMESPACE = "default";
 
     private static final String KEY_SANDBOX_HOME = "sandbox_home";
     private static final String KEY_LAUNCH_MODE = "mode";
@@ -109,6 +109,7 @@ public class CoreConfigure {
 
     /**
      * 获取容器的命名空间
+     *
      * @return 容器的命名空间
      */
     public String getNamespace() {
@@ -143,7 +144,20 @@ public class CoreConfigure {
      * @return 用户模块加载路径(集合)
      */
     public String[] getUserModuleLibPaths() {
-        return replaceWithSysPropUserHome(codec.toCollection(featureMap.get(KEY_USER_MODULE_LIB_PATH)).toArray(new String[]{}));
+        //todo xxxxx
+        String defaultSandboxHome = getArchiveJarUserModulesPath();
+        System.out.println("defaultSandboxHome:" + defaultSandboxHome);
+        String[] strings = replaceWithSysPropUserHome(codec.toCollection(featureMap.get(KEY_USER_MODULE_LIB_PATH)).toArray(new String[]{}));
+        String[] a = new String[strings.length + 1];
+        System.arraycopy(strings, 0, a, 0, strings.length);
+        a[a.length - 1] = defaultSandboxHome;
+        return a;
+    }
+
+    private static String getArchiveJarUserModulesPath() {
+        String codeSource = CoreConfigure.class.getProtectionDomain().getCodeSource().getLocation().getFile();
+        String parent = new File(codeSource).getParentFile().getParentFile().getParent();
+        return new File(parent, "user-modules").getPath();
     }
 
     private static String[] replaceWithSysPropUserHome(final String[] pathArray) {

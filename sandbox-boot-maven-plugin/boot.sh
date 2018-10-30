@@ -32,4 +32,4 @@ if [ -f "sandbox-boot-agent.jar" ]; then
     mv sandbox-boot-agent.jar sandbox-boot-agent.jar.bak
 fi
 #重新打包成jar，注意后面打包的目录
-jar -0cvfm  sandbox-boot-agent.jar META-INF/MANIFEST.MF META-INF net org sandbox
+jar -0cvfm  sandbox-boot-agent.jar META-INF/MANIFEST.MF META-INF net org sandbox user-modules

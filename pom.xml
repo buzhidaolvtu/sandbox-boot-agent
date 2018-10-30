@@ -13,6 +13,7 @@
         <module>sandbox-boot-maven-plugin</module>
         <module>sandbox-boot-example</module>
         <module>sandbox-module-example</module>
+        <module>sandbox-module-package-example</module>
     </modules>
 
 
