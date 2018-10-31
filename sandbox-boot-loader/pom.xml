@@ -47,7 +47,7 @@
                             <archive>
                                 <manifestEntries>
                                     <Premain-Class>net.opensource.boot.loader.agent.AgentLauncher</Premain-Class>
-                                    <Start-Premain-Class>com.alibaba.jvm.sandbox.agent.AgentLauncher</Start-Premain-Class>
+                                    <Start-Premain-Class>com.alifafa.jvm.sandbox.agent.AgentLauncher</Start-Premain-Class>
                                     <Can-Redefine-Classes>true</Can-Redefine-Classes>
                                     <Can-Retransform-Classes>true</Can-Retransform-Classes>
                                 </manifestEntries>

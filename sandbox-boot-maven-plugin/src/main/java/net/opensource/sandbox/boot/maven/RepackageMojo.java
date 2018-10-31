@@ -1,6 +1,7 @@
 package net.opensource.sandbox.boot.maven;
 
 import net.opensource.freedom.util.ZipUtils;
+import org.apache.commons.io.IOUtils;
 import org.apache.maven.model.Dependency;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
@@ -12,6 +13,8 @@ import org.codehaus.plexus.archiver.util.DefaultFileSet;
 import org.codehaus.plexus.archiver.zip.ZipArchiver;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.net.URL;
 import java.util.Enumeration;
 import java.util.List;
@@ -84,7 +87,7 @@ public class RepackageMojo extends AbstractMojo {
         try {
             File sandbox_boot_agent_home = new File(target, "sandbox-boot-agent");
             sandbox_boot_agent_home.delete();
-            sandbox_boot_agent_home.mkdir();
+            sandbox_boot_agent_home.mkdirs();
 
             //解压sandbox-1.0.16-bin.zip
             Enumeration<URL> sandboxResources = getClass().getClassLoader().getResources(SANBOX);
@@ -99,19 +102,33 @@ public class RepackageMojo extends AbstractMojo {
             //把user-module.jar放到user-module目录下面，如果是pom，就把子包的jar全部放到user-module下面
             File user_modules_dir = new File(sandbox_boot_agent_home, "user-modules");
             user_modules_dir.delete();
-            user_modules_dir.mkdir();
+            user_modules_dir.mkdirs();
+
+            File[] files = target.listFiles();
+            File jarFile = findJarFile(files);
+            FileInputStream input = new FileInputStream(jarFile);
+            FileOutputStream output = new FileOutputStream(new File(user_modules_dir, jarFile.getName()));
+            IOUtils.copyLarge(input, output);
+            IOUtils.closeQuietly(input);
+            IOUtils.closeQuietly(output);
 
             ZipArchiver archiver = new ZipArchiver();
             archiver.setCompress(false);
-//            archiver.addDirectory( sandbox_boot_agent_home, "", new String[] { "**/*" }, null );
             archiver.addFileSet(DefaultFileSet.fileSet(sandbox_boot_agent_home));
             archiver.setIncludeEmptyDirs(true);
-            archiver.setDestFile(new File(sandbox_boot_agent_home,"sandbox-boot-agent.jar"));
+            archiver.setDestFile(new File(sandbox_boot_agent_home, "sandbox-boot-agent.jar"));
             archiver.createArchive();
-
-            //把上面两部解压的结果再archive to jar package
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+    }
+
+    private File findJarFile(java.io.File[] files) {
+        for (File file : files) {
+            if (file.getName().contains("jar-with-dependencies")) {
+                return file;
+            }
+        }
+        return null;
     }
 }

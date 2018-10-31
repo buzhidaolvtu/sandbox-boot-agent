@@ -1,10 +1,10 @@
 package com.albaba.jvm.sandbox.module.mgr;
 
-import com.alibaba.jvm.sandbox.api.Information;
-import com.alibaba.jvm.sandbox.api.Module;
-import com.alibaba.jvm.sandbox.api.ModuleException;
-import com.alibaba.jvm.sandbox.api.http.Http;
-import com.alibaba.jvm.sandbox.api.resource.ModuleManager;
+import com.alifafa.jvm.sandbox.api.Information;
+import com.alifafa.jvm.sandbox.api.Module;
+import com.alifafa.jvm.sandbox.api.ModuleException;
+import com.alifafa.jvm.sandbox.api.http.Http;
+import com.alifafa.jvm.sandbox.api.resource.ModuleManager;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -21,7 +21,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import static com.alibaba.jvm.sandbox.api.util.GaStringUtils.matching;
+import static com.alifafa.jvm.sandbox.api.util.GaStringUtils.matching;
 import static javax.servlet.http.HttpServletResponse.SC_BAD_REQUEST;
 import static org.apache.commons.lang3.StringUtils.EMPTY;
 

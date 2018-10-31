@@ -1,11 +1,11 @@
 package com.albaba.jvm.sandbox.module.mgr;
 
-import com.alibaba.jvm.sandbox.api.Information;
-import com.alibaba.jvm.sandbox.api.Module;
-import com.alibaba.jvm.sandbox.api.event.Event;
-import com.alibaba.jvm.sandbox.api.http.Http;
-import com.alibaba.jvm.sandbox.api.resource.ConfigInfo;
-import com.alibaba.jvm.sandbox.api.resource.EventMonitor;
+import com.alifafa.jvm.sandbox.api.Information;
+import com.alifafa.jvm.sandbox.api.Module;
+import com.alifafa.jvm.sandbox.api.event.Event;
+import com.alifafa.jvm.sandbox.api.http.Http;
+import com.alifafa.jvm.sandbox.api.resource.ConfigInfo;
+import com.alifafa.jvm.sandbox.api.resource.EventMonitor;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;

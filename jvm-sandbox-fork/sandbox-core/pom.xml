@@ -38,7 +38,7 @@
                             </descriptorRefs>
                             <archive>
                                 <manifest>
-                                    <mainClass>com.alibaba.jvm.sandbox.core.CoreLauncher</mainClass>
+                                    <mainClass>com.alifafa.jvm.sandbox.core.CoreLauncher</mainClass>
                                 </manifest>
                             </archive>
                         </configuration>

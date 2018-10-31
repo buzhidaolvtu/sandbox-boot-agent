@@ -1,11 +1,11 @@
 package com.albaba.jvm.sandbox.module.mgr;
 
-import com.alibaba.jvm.sandbox.api.Information;
-import com.alibaba.jvm.sandbox.api.Module;
-import com.alibaba.jvm.sandbox.api.ModuleException;
-import com.alibaba.jvm.sandbox.api.http.Http;
-import com.alibaba.jvm.sandbox.api.resource.ConfigInfo;
-import com.alibaba.jvm.sandbox.api.resource.ModuleManager;
+import com.alifafa.jvm.sandbox.api.Information;
+import com.alifafa.jvm.sandbox.api.Module;
+import com.alifafa.jvm.sandbox.api.ModuleException;
+import com.alifafa.jvm.sandbox.api.http.Http;
+import com.alifafa.jvm.sandbox.api.resource.ConfigInfo;
+import com.alifafa.jvm.sandbox.api.resource.ModuleManager;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.reflect.FieldUtils;
 import org.apache.commons.lang3.reflect.MethodUtils;
@@ -111,7 +111,7 @@ public class ControlModule implements Module {
         }
 
         final Class<?> classOfCoreServer = sandboxClassLoader
-                .loadClass("com.alibaba.jvm.sandbox.core.server.ProxyCoreServer");
+                .loadClass("com.alifafa.jvm.sandbox.core.server.ProxyCoreServer");
         final Object objectOfJettyCoreServer = classOfCoreServer.getMethod("getInstance").invoke(null);
         final Method methodOfDestroy = classOfCoreServer.getMethod("destroy");
         methodOfDestroy.invoke(objectOfJettyCoreServer);
@@ -124,7 +124,7 @@ public class ControlModule implements Module {
         logger.info("prepare to shutdown jvm-sandbox[{}].", configInfo.getNamespace());
 
         final Class<?> classOfAgentLauncher = getClass().getClassLoader()
-                .loadClass("com.alibaba.jvm.sandbox.agent.AgentLauncher");
+                .loadClass("com.alifafa.jvm.sandbox.agent.AgentLauncher");
 
         // 卸载模块
         unloadModules();

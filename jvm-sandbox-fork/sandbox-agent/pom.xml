@@ -44,8 +44,8 @@
                             </descriptorRefs>
                             <archive>
                                 <manifestEntries>
-                                    <Premain-Class>com.alibaba.jvm.sandbox.agent.AgentLauncher</Premain-Class>
-                                    <Agent-Class>com.alibaba.jvm.sandbox.agent.AgentLauncher</Agent-Class>
+                                    <Premain-Class>com.alifafa.jvm.sandbox.agent.AgentLauncher</Premain-Class>
+                                    <Agent-Class>com.alifafa.jvm.sandbox.agent.AgentLauncher</Agent-Class>
                                     <Can-Redefine-Classes>true</Can-Redefine-Classes>
                                     <Can-Retransform-Classes>true</Can-Retransform-Classes>
                                 </manifestEntries>
