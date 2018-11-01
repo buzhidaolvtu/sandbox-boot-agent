@@ -22,7 +22,7 @@ import java.util.List;
 @Mojo(name = "repackage", defaultPhase = LifecyclePhase.PACKAGE, requiresProject = true, threadSafe = true, requiresDependencyResolution = ResolutionScope.COMPILE_PLUS_RUNTIME, requiresDependencyCollection = ResolutionScope.COMPILE_PLUS_RUNTIME)
 public class RepackageMojo extends AbstractMojo {
 
-    private final static String SANBOX = "META-INF/sandbox/sandbox-1.0.16-bin.zip";
+    private final static String SANBOX = "META-INF/sandbox/sandbox-1.1.0-bin.zip";
     private final static String SANBOX_LOADER = "META-INF/sandbox-loader/sandbox-boot-loader-1.0-SNAPSHOT-jar-with-dependencies.jar";
 
     /**

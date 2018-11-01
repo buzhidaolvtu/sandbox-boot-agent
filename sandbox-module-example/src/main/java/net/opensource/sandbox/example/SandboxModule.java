@@ -1,10 +1,12 @@
 package net.opensource.sandbox.example;
 
-import com.alifafa.jvm.sandbox.api.Module;
-import com.alifafa.jvm.sandbox.api.ModuleLifecycle;
+import com.alibaba.jvm.sandbox.api.Information;
+import com.alibaba.jvm.sandbox.api.Module;
+import com.alibaba.jvm.sandbox.api.ModuleLifecycle;
 import org.kohsuke.MetaInfServices;
 
 @MetaInfServices(Module.class)
+@Information(id = "sandbox-module-example", version = "0.0.1", author = "lvtu")
 public class SandboxModule implements Module, ModuleLifecycle {
 
     @Override
@@ -14,7 +16,6 @@ public class SandboxModule implements Module, ModuleLifecycle {
 
     @Override
     public void onLoad() throws Throwable {
-
     }
 
     @Override
