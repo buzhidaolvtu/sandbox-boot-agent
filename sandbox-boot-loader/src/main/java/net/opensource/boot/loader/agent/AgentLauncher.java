@@ -78,13 +78,17 @@ public class AgentLauncher extends ExecutableArchiveLauncher {
      *                      [namespace,prop]
      * @param inst          inst
      */
-    public static void premain(String featureString, Instrumentation inst) throws Exception {
-        try {
-            System.out.println("start boot agent loader");
-            new AgentLauncher().launch(featureString, inst);
-        } catch (Throwable ex) {
-            ex.printStackTrace();
-        }
+    public static void premain(final String featureString, final Instrumentation inst) throws Exception {
+        new Thread(new Runnable() {
+            public void run() {
+                try {
+                    System.out.println("start boot agent loader");
+                    new AgentLauncher().launch(featureString, inst);
+                } catch (Throwable ex) {
+                    ex.printStackTrace();
+                }
+            }
+        }).start();
     }
 
 }
